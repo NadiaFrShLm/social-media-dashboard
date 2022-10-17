@@ -1,0 +1,9 @@
+@mixin layout($maxWidth: 1440px) {
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: $maxWidth;
+}
+
+@mixin container-a {
+  @include layout();
+}

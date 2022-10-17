@@ -1,0 +1,222 @@
+@use '../utils' as *;
+
+main {
+  @include flex(center);
+  @include container-a;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-image: var(--col-bg-dark);
+  color: var(--col-text-dark);
+
+  .card {
+    @include padding(2rem);
+    @include flex(center);
+    flex-direction: column;
+    max-width: 900px;
+    width: 100%;
+  }
+}
+// navigation block
+nav {
+  @include flex(space-between);
+  width: 100%;
+  margin-bottom: 2.4rem;
+  font-size: 1.2rem;
+
+  .header-wrapper {
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+  }
+  .mode-wrapper {
+    @include flex(center);
+
+    span {
+      font-weight: 700;
+    }
+
+    .btn {
+      @include flex(center);
+      @include paddingX(1.4rem);
+
+      &__toggler {
+        @include flex(space-around);
+        background-image: var(--col-toggle-dark);
+        width: 4rem;
+        height: 2.2rem;
+        border-radius: 100px;
+        cursor: pointer;
+        position: relative;
+
+        #checkbox {
+          display: none;
+
+          &:checked + .btn__ball {
+            left: 3px;
+          }
+        }
+      }
+      &__ball {
+        position: absolute;
+        top: 50%;
+        right: 2px;
+        transform: translateY(-50%);
+        display: inline-block;
+        width: 1.6rem;
+        height: 1.6rem;
+        background-color: var(--col-card-dark);
+        border-radius: 50%;
+        z-index: 2;
+      }
+    }
+  }
+}
+// folowers block
+.media {
+  width: 100%;
+  @include grid;
+  font-size: 1rem;
+  margin-bottom: 3rem;
+
+  .block {
+    @include radius(3px);
+    @include padding(2.2rem);
+    background-color: var(--col-card-dark);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      background-color: hsl(228, 27%, 26%);
+      h2 {
+        transform: scale(1.1) translateY(-2px);
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      top: 0;
+      left: 0;
+    }
+    .user {
+      @include flex(center);
+      margin-bottom: 2rem;
+
+      img {
+        width: 1.4rem;
+      }
+      span {
+        font-weight: 700;
+      }
+    }
+
+    .sequence {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+    .today {
+      @include flex(center);
+
+      &:has(> img.arrow-up) {
+        color: var(--col-green-primary);
+      }
+      &:has(> img.arrow-down) {
+        color: var(--col-red-primary);
+      }
+    }
+  }
+  .facebook::before {
+    background-color: var(--col-facebook);
+  }
+  .twitter::before {
+    background-color: var(--col-twitter);
+  }
+  .instagram::before {
+    background-image: var(--col-instagram);
+  }
+  .youtube::before {
+    background-color: var(--col-youtube);
+  }
+}
+// today overview block
+.today {
+  width: 100%;
+  h3 {
+    margin-bottom: 2rem;
+  }
+  .today-wrapper {
+    @include grid;
+    font-size: 1rem;
+
+    .block {
+      @include radius(3px);
+      @include padding(2rem);
+      @include paddingX(1.6rem);
+      background-color: var(--col-card-dark);
+
+      &:hover {
+        background-color: hsl(228, 27%, 26%);
+      }
+
+      .row {
+        @include flex(space-between);
+
+        &:first-child {
+          margin-bottom: 1.6rem;
+        }
+        &:last-child {
+          align-items: baseline;
+        }
+        span {
+          font-weight: 700;
+        }
+        img {
+          width: 1.6rem;
+        }
+        .statistic {
+          @include flex($gap: 0.3rem);
+          font-size: 0.8rem;
+
+          &:has(> img.arrow-up) {
+            color: var(--col-green-primary);
+          }
+          &:has(> img.arrow-down) {
+            color: var(--col-red-primary);
+          }
+          .arrow {
+            width: 0.7rem;
+          }
+        }
+      }
+    }
+  }
+}
+@include mobile-only {
+  html {
+    font-size: 75% !important; // 12px
+  }
+  .today > .today-wrapper > .block {
+    @include paddingX(3rem);
+  }
+  nav {
+    flex-direction: column;
+
+    .header-wrapper {
+      border-bottom: 0.5px solid currentColor;
+      padding-bottom: 1.8rem;
+      width: 100%;
+    }
+    .mode-wrapper {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+}
+img {
+  transform: scale(1.5);
+}

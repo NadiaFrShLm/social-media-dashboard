@@ -1,0 +1,36 @@
+@use './_variables' as *;
+
+@mixin radius($value: $borderRadius) {
+  border-radius: $value;
+}
+
+@mixin shadow($value: $boxShadow) {
+  box-shadow: $value;
+}
+
+@mixin padding($value: 1rem) {
+  padding: $value;
+}
+
+@mixin paddingX($value: 1rem) {
+  padding-left: $value;
+  padding-right: $value;
+}
+
+@mixin flex($justify: false, $align: center, $gap: 1rem) {
+  display: flex;
+  align-items: $align;
+  gap: $gap;
+
+  @if $justify {
+    justify-content: $justify;
+    @content;
+  }
+}
+
+@mixin grid() {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}

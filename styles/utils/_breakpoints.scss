@@ -1,0 +1,14 @@
+// small tablets & large smartphones
+$breakpoint-mobile: 576px;
+@mixin mobile-only {
+  @media (max-width:#{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+// medium devices
+@mixin tablet {
+  @media (min-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
